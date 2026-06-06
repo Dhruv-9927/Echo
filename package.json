@@ -6,6 +6,7 @@
     "dev": "concurrently -n api,web -c blue,green \"pnpm --filter @echo/api dev\" \"pnpm --filter @echo/web dev\"",
     "dev:all": "concurrently -n api,web,slack -c blue,green,yellow \"pnpm --filter @echo/api dev\" \"pnpm --filter @echo/web dev\" \"pnpm --filter @echo/slack-bot dev\"",
     "build": "pnpm -r build",
+    "start": "concurrently -n api,slack -c blue,yellow \"node apps/api/dist/index.js\" \"node apps/slack-bot/dist/index.js\"",
     "seed": "tsx scripts/seed-demo-data.ts",
     "lint": "tsc --noEmit",
     "clean": "rimraf **/dist **/node_modules"
