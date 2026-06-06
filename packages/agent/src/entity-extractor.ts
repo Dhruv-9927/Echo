@@ -2,7 +2,7 @@
 // ECHO — Entity Extractor (Groq-powered)
 // ──────────────────────────────────────────────
 
-import Groq from 'groq-sdk';
+import { Groq } from 'groq-sdk';
 import type { ExtractedEntities, MemoryType } from '@echo/types';
 import { logger } from '@echo/types';
 import { ENTITY_EXTRACTION_PROMPT } from './prompts/echo-system.js';

@@ -5,7 +5,7 @@
 import dotenv from 'dotenv';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import Groq from 'groq-sdk';
+import { Groq } from 'groq-sdk';
 import { logger } from '@echo/types';
 import { EchoMemoryClient } from '@echo/memory';
 import { KnowledgeGraph } from '@echo/graph';
@@ -31,7 +31,22 @@ async function main(): Promise<void> {
   const model = process.env.GROQ_MODEL ?? 'qwen/qwen3-32b';
   const extractor = new EntityExtractor(groq, model);
 
-  const pipeline = new IngestionPipeline(memory, graph, extractor);
+  const pipeline = new IngestionPipeline(memory, graph, extractor, {
+    onMemoryAdded: (mem, delta) => {
+      fetch('http://localhost:3001/api/webhook/ingest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ memory: mem, graphDelta: delta })
+      }).catch(err => logger.error('Webhook ingest failed', { error: String(err) }));
+    },
+    onGraphPulse: (nodeId) => {
+      fetch('http://localhost:3001/api/webhook/pulse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nodeId })
+      }).catch(err => logger.error('Webhook pulse failed', { error: String(err) }));
+    }
+  });
 
   // ── Decide mode ─────────────────────────────
   const slackToken = process.env.SLACK_BOT_TOKEN;

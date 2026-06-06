@@ -2,7 +2,7 @@
 // ECHO — Groq LLM Agent
 // ──────────────────────────────────────────────
 
-import Groq from 'groq-sdk';
+import { Groq } from 'groq-sdk';
 import type { ChatCompletionMessageParam, ChatCompletionTool } from 'groq-sdk/resources/chat/completions';
 import type { AskResponse, EchoMemory } from '@echo/types';
 import { logger } from '@echo/types';

@@ -57,6 +57,33 @@ export async function createEchoServer(): Promise<{
   app.use('/api', createTimelineRouter(memory));
   app.use('/api', createAskRouter(agent));
 
+  // ── Webhooks (from Slack Bot) ──────────────────
+  app.post('/api/webhook/ingest', (req, res) => {
+    const { memory: mem, graphDelta } = req.body;
+    if (!mem) {
+      res.sendStatus(400);
+      return;
+    }
+    
+    // Update API's local state
+    memory.store(mem);
+    graph.addMemory(mem);
+    
+    // Broadcast to UI
+    emitMemoryAdded(mem, graphDelta);
+    res.sendStatus(200);
+  });
+
+  app.post('/api/webhook/pulse', (req, res) => {
+    const { nodeId } = req.body;
+    if (!nodeId) {
+      res.sendStatus(400);
+      return;
+    }
+    emitGraphPulse(nodeId);
+    res.sendStatus(200);
+  });
+
   // ── HTTP + Socket.io ────────────────────────
   const httpServer = createServer(app);
   const io = new SocketIOServer(httpServer, {

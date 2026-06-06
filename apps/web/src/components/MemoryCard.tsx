@@ -25,8 +25,23 @@ export function MemoryCard({ memory, onClick }: MemoryCardProps) {
           <span className="memory-card__dot">•</span>
           <span className="text-mono">{formatDate(memory.timestamp)}</span>
         </div>
-        <div className={`memory-badge memory-badge--${memory.memoryType}`}>
-          {memory.memoryType}
+        <div className="memory-card__badges" style={{ display: 'flex', gap: '8px' }}>
+          <div className={`memory-badge memory-badge--${memory.memoryType}`}>
+            {memory.memoryType}
+          </div>
+          {memory.decayScore !== undefined && (
+            <div 
+              className="memory-badge" 
+              style={{ 
+                backgroundColor: `rgba(255, 255, 255, ${Math.max(0.1, memory.decayScore * 0.2)})`,
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: memory.decayScore > 0.8 ? '#4ade80' : memory.decayScore > 0.4 ? '#facc15' : '#f87171'
+              }}
+              title="Knowledge Freshness (Temporal Decay)"
+            >
+              Freshness: {Math.round(memory.decayScore * 100)}%
+            </div>
+          )}
         </div>
       </div>
       

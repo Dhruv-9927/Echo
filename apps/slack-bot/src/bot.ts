@@ -35,8 +35,10 @@ export function createSlackBot(
         timestamp: new Date().toISOString(),
       };
 
-      // Add to batch for processing
-      pipeline.addToBatch(incoming);
+      // Process immediately for real-time dashboard updates (no batching)
+      pipeline.ingest(incoming).catch(err => {
+        logger.error('Failed to ingest message in real-time', { error: String(err) });
+      });
 
       // Check if this is an @echo mention
       if (message.text.toLowerCase().includes('@echo') || message.text.includes('<@')) {
