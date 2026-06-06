@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data (runtime generated)
+data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Scripts (population/utility - not core)
+scripts/populate-*.ts
+scripts/get-channels.ts
+
+# Temp
+temp.json

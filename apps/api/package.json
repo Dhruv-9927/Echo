@@ -1,0 +1,27 @@
+{
+  "name": "@echo/api",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@echo/types": "workspace:*",
+    "@echo/memory": "workspace:*",
+    "@echo/graph": "workspace:*",
+    "@echo/agent": "workspace:*",
+    "express": "^4.21.0",
+    "socket.io": "^4.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  }
+}

@@ -1,0 +1,9 @@
+.experts-page__search {
+  margin-bottom: 40px;
+}
+
+.experts-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 24px;
+}

@@ -1,0 +1,43 @@
+.graph-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.graph-page__header {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.graph-legend {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 16px;
+  padding: 12px 20px;
+  border-radius: 30px;
+}
+
+.graph-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--echo-text-secondary);
+}
+
+.graph-legend__color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.graph-page__content {
+  flex: 1;
+  min-height: 0;
+}

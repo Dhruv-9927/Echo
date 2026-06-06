@@ -1,0 +1,59 @@
+.timeline-page__controls {
+  margin-bottom: 40px;
+}
+
+.timeline-page__feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.timeline-page__item {
+  display: flex;
+  gap: 24px;
+  opacity: 0;
+  animation: slideIn var(--transition-flow) forwards;
+}
+
+.timeline-page__line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.timeline-page__line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -40px;
+  width: 2px;
+  background: var(--echo-border-2);
+  z-index: 0;
+}
+
+.timeline-page__item:last-child .timeline-page__line::before {
+  display: none;
+}
+
+.timeline-page__node {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--echo-pulse);
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-page__card {
+  flex: 1;
+  max-width: 800px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}

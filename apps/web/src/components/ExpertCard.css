@@ -1,0 +1,117 @@
+.expert-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all var(--transition-snap);
+}
+
+.expert-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--echo-pulse);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.expert-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.expert-card__profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.expert-card__rank {
+  color: var(--echo-text-muted);
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 30px;
+}
+
+.expert-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--echo-pulse), var(--echo-signal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--echo-void);
+}
+
+.expert-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.expert-card__name {
+  font-size: 1.3rem;
+  color: var(--echo-text-primary);
+  margin-bottom: 2px;
+}
+
+.expert-card__handle {
+  font-size: 0.85rem;
+  color: var(--echo-text-secondary);
+}
+
+.expert-card__score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--echo-pulse);
+  background: rgba(108, 99, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(108, 99, 255, 0.2);
+}
+
+.expert-card__domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.expert-card__domain {
+  font-size: 0.8rem;
+  color: var(--echo-signal);
+  background: rgba(0, 212, 170, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.expert-card__evidence {
+  background: var(--echo-surface-2);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expert-card__evidence-header {
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.expert-card__memory {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.expert-card__memory-icon {
+  color: var(--echo-pulse);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.expert-card__memory span {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}

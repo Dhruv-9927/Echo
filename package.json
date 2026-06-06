@@ -1,0 +1,25 @@
+{
+  "name": "echo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"pnpm --filter @echo/api dev\" \"pnpm --filter @echo/web dev\"",
+    "dev:all": "concurrently -n api,web,slack -c blue,green,yellow \"pnpm --filter @echo/api dev\" \"pnpm --filter @echo/web dev\" \"pnpm --filter @echo/slack-bot dev\"",
+    "build": "pnpm -r build",
+    "seed": "tsx scripts/seed-demo-data.ts",
+    "lint": "tsc --noEmit",
+    "clean": "rimraf **/dist **/node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "concurrently": "^9.1.0",
+    "dotenv": "^16.6.1",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
